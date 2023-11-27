@@ -6,16 +6,16 @@ using UnityEngine.UIElements;
 public class ItemController : MonoBehaviour
 {
     private bool dragging = false;
+    private Vector3 moveOffset;
     public SpriteRenderer spriteRenderer;
     // offset that will be applied when dragging an item
-    private Vector3 scaleOffset = new Vector3(1.5f, 1.5f, 1.5f);
-    private float scaleTime = 0.3f;
+    private float scaleOffset = 1.003f;
+    public float scaleTime = 0.05f;
+    private bool scaling = false;
 
-    /// <summary>
-    /// Method for assigning components
-    /// </summary>
-    [ContextMenu("FillComponents")]
-    public void FillComponents()
+    public float rotationAngle = 90f;
+
+    private void Start()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
@@ -31,27 +31,48 @@ public class ItemController : MonoBehaviour
         if (dragging)
         {
             spriteRenderer.color = Color.yellow;
-            //spriteRenderer.transform.localScale = Vector3.Scale(Vector3.one, scaleOffset);
 
-            transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
-                                             Camera.main.ScreenToWorldPoint(Input.mousePosition).y,
-                                             Camera.main.ScreenToWorldPoint(Input.mousePosition).z + 2f);
+            transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + moveOffset;
+
             if (Input.GetMouseButtonDown(1))
             {
-                Debug.Log("Rigth-clicke: " + transform.rotation.z);
-                //transform.rotation = Quaternion.Euler(0, 0, transform.rotation.z + 90f);
-                transform.Rotate(new Vector3(0, 0, -90));
+                // rotate 90 degrees clock-wise
+                transform.Rotate(new Vector3(0, 0, -rotationAngle));
             }
         }
     }
 
+    /// <summary>
+    /// Coroutine for scaling the sprite scale over time
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator ScaleItemOnDrag()
+    {
+        scaling = true;
+        float counter = scaleTime;
+        while(counter > 0)
+        {
+            spriteRenderer.transform.localScale = new Vector3(spriteRenderer.transform.localScale.x * scaleOffset,
+                                                              spriteRenderer.transform.localScale.y * scaleOffset,
+                                                              spriteRenderer.transform.localScale.z * scaleOffset);
+            counter -= Time.deltaTime;
+            yield return null;
+        }
+        scaling = false;
+    }
+
     private void OnMouseDown()
     {
+        moveOffset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (!scaling) StartCoroutine(ScaleItemOnDrag());
         dragging = true;
     }
 
     private void OnMouseUp()
     {
+        // if the item is placed beyond the camera limits, place it in the center (for the moment)
+        if (Mathf.Abs(transform.position.x) > 1.8) transform.position = Vector3.zero;
+        
         spriteRenderer.color = Color.white;
         spriteRenderer.transform.localScale = Vector3.one;
         dragging = false;

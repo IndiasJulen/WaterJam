@@ -218,8 +218,8 @@ Transform:
   m_GameObject: {fileID: 388365493}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.15, y: -0.24, z: 0}
-  m_LocalScale: {x: 8.7959, y: 8.7959, z: 8.7959}
+  m_LocalPosition: {x: -1.156, y: -0.24, z: 0}
+  m_LocalScale: {x: 2.4642591, y: 2.4642591, z: 2.4642591}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 937158451}
@@ -237,6 +237,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b118d7ff29d6d645a9cfc40b87b04bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
+  scaleTime: 0.1
+  rotationAngle: 90
 --- !u!61 &388365496
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -553,7 +556,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 1
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
