@@ -18,7 +18,6 @@ public class PickableItem : MonoBehaviour
     }
 
     private void OnMouseDown() {
-        //transform.localScale = Vector3.Scale(transform.localScale, new Vector3(scale, scale, scale));
         Vector3 scaleToSpawn = transform.localScale;
         Destroy(gameObject);
         PickableItem newItem = itemsToSpawn[Random.Range(0, itemsToSpawn.Length)];
