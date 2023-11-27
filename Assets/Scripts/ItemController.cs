@@ -40,7 +40,7 @@ public class ItemController : MonoBehaviour
             {
                 Debug.Log("Rigth-clicke: " + transform.rotation.z);
                 //transform.rotation = Quaternion.Euler(0, 0, transform.rotation.z + 90f);
-                transform.Rotate(new Vector3(0, 0, 90));
+                transform.Rotate(new Vector3(0, 0, -90));
             }
         }
     }
