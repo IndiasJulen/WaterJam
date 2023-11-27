@@ -15,6 +15,9 @@ public class ItemController : MonoBehaviour
 
     public float rotationAngle = 90f;
 
+    public float xLimit = 1.8f;
+    public float yLimit = 1.0f;
+
     private void Start()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -63,6 +66,7 @@ public class ItemController : MonoBehaviour
 
     private void OnMouseDown()
     {
+        // offset for the mouse to stay in the position where the player clicks
         moveOffset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (!scaling) StartCoroutine(ScaleItemOnDrag());
         dragging = true;
@@ -71,7 +75,7 @@ public class ItemController : MonoBehaviour
     private void OnMouseUp()
     {
         // if the item is placed beyond the camera limits, place it in the center (for the moment)
-        if (Mathf.Abs(transform.position.x) > 1.8) transform.position = Vector3.zero;
+        if (Mathf.Abs(transform.position.x) > xLimit || Mathf.Abs(transform.position.y) > yLimit) transform.position = Vector3.zero;
         
         spriteRenderer.color = Color.white;
         spriteRenderer.transform.localScale = Vector3.one;
