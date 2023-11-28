@@ -20,6 +20,8 @@ public class ItemController : MonoBehaviour
 
     public float gizmoSize = 1.3f;
 
+    public Rigidbody2D rigidBody;
+
     private void Start()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -28,7 +30,11 @@ public class ItemController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        EvaluateDragging();
+        if(Input.GetKeyDown(KeyCode.D))
+        {
+            transform.position = new Vector3(transform.position.x + 0.05f, transform.position.y, transform.position.z);
+        }
+        //EvaluateDragging();
     }
 
     //private void OnDrawGizmos() {
