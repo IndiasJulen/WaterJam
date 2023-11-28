@@ -18,6 +18,8 @@ public class ItemController : MonoBehaviour
     public float xLimit = 1.8f;
     public float yLimit = 1.0f;
 
+    public float gizmoSize = 1.3f;
+
     private void Start()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -28,6 +30,10 @@ public class ItemController : MonoBehaviour
     {
         EvaluateDragging();
     }
+
+    //private void OnDrawGizmos() {
+    //    Gizmos.DrawWireCube(transform.position, new Vector3(gizmoSize, gizmoSize, 0f));
+    //}
 
     public void EvaluateDragging()
     {
@@ -49,26 +55,27 @@ public class ItemController : MonoBehaviour
     /// Coroutine for scaling the sprite scale over time
     /// </summary>
     /// <returns></returns>
-    private IEnumerator ScaleItemOnDrag()
-    {
-        scaling = true;
-        float counter = scaleTime;
-        while(counter > 0)
-        {
-            spriteRenderer.transform.localScale = new Vector3(spriteRenderer.transform.localScale.x * scaleOffset,
-                                                              spriteRenderer.transform.localScale.y * scaleOffset,
-                                                              spriteRenderer.transform.localScale.z * scaleOffset);
-            counter -= Time.deltaTime;
-            yield return null;
-        }
-        scaling = false;
-    }
+    //private IEnumerator ScaleItemOnDrag()
+    //{
+    //    scaling = true;
+    //    float counter = scaleTime;
+    //    while(counter > 0)
+    //    {
+    //        spriteRenderer.transform.localScale = new Vector3(spriteRenderer.transform.localScale.x * scaleOffset,
+    //                                                          spriteRenderer.transform.localScale.y * scaleOffset,
+    //                                                          spriteRenderer.transform.localScale.z * scaleOffset);
+    //        counter -= Time.deltaTime;
+    //        yield return null;
+    //    }
+    //    scaling = false;
+    //}
 
     private void OnMouseDown()
     {
+        Debug.Log("A");
         // offset for the mouse to stay in the position where the player clicks
         moveOffset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (!scaling) StartCoroutine(ScaleItemOnDrag());
+        //if (!scaling) StartCoroutine(ScaleItemOnDrag());
         dragging = true;
     }
 
@@ -78,7 +85,7 @@ public class ItemController : MonoBehaviour
         if (Mathf.Abs(transform.position.x) > xLimit || Mathf.Abs(transform.position.y) > yLimit) transform.position = Vector3.zero;
         
         spriteRenderer.color = Color.white;
-        spriteRenderer.transform.localScale = Vector3.one;
+        //spriteRenderer.transform.localScale = Vector3.one;
         dragging = false;
     }
 }
