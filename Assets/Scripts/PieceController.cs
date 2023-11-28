@@ -9,22 +9,32 @@ public class PieceController : MonoBehaviour
     public float moveSpeed = 2f;
     public bool moving = false;
 
+    public SpriteRenderer spriteRenderer;
+
+    private Color originalColor;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
     }
 
     // Update is called once per frame
     void Update()
     {
         MovePiece();
+        ChangeColorIfNotMovable();
     }
 
     private void OnMouseDown()
     {
         // change between canMove states
-        if (!BoardManager.instance.CanMovePiece(gameObject)) BoardManager.instance.movablePiece = gameObject;
+        if (!BoardManager.instance.CanMovePiece(gameObject))
+        {
+            BoardManager.instance.movablePiece = gameObject;
+            spriteRenderer.color = new Color(255f, 255f, 255f, 0.5f);
+        }
     }
 
     /// <summary>
@@ -39,7 +49,6 @@ public class PieceController : MonoBehaviour
         // if we are close enough to the point we want to move, allow movement
         if (Vector3.Distance(transform.position, currentPoint.transform.position) < 0.005f)
         {
-            Debug.Log("EEEE");
             if (Input.GetAxisRaw("Horizontal") > 0.5f && CheckPointState(currentPoint.right))
             {
                 if (currentPoint.right != null) UpdateCurrentPoint(currentPoint.right);
@@ -72,6 +81,10 @@ public class PieceController : MonoBehaviour
         return point != null && !point.occupied;
     }
 
+    /// <summary>
+    /// Updates the current point information with the given next point
+    /// </summary>
+    /// <param name="nextPoint"></param>
     private void UpdateCurrentPoint(BoardPoint nextPoint)
     {
         // set the current point as free to be occupied by any other piece
@@ -81,5 +94,13 @@ public class PieceController : MonoBehaviour
         moving = true;
         // set the next point as occupied, currentPoint is now the new point to be occupied
         currentPoint.occupied = true;
+    }
+
+    /// <summary>
+    /// Checks if the piece is movable and if is not, changes back the color to original
+    /// </summary>
+    private void ChangeColorIfNotMovable()
+    {
+        if (!BoardManager.instance.CanMovePiece(gameObject)) spriteRenderer.color = originalColor;
     }
 }
