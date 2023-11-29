@@ -13,6 +13,13 @@ public class PieceController : MonoBehaviour
 
     private Color originalColor;
 
+    public static PieceController instance;
+
+    private void Awake()
+    {
+        if (instance == null) instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +32,7 @@ public class PieceController : MonoBehaviour
     {
         MovePiece();
         ChangeColorIfNotMovable();
+        CheckSolution();
     }
 
     private void OnMouseDown()
@@ -37,6 +45,11 @@ public class PieceController : MonoBehaviour
         }
     }
 
+    public void CheckSolution()
+    {
+       BoardManager.instance.CheckSolution();
+    }
+
     /// <summary>
     /// Method for moving the piece and update the needed variables
     /// </summary>
@@ -44,7 +57,7 @@ public class PieceController : MonoBehaviour
     {
         if (!BoardManager.instance.CanMovePiece(gameObject)) return;
         
-        if(moving) transform.position = Vector3.MoveTowards(transform.position, currentPoint.transform.position, moveSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, currentPoint.transform.position, moveSpeed * Time.deltaTime);
 
         // if we are close enough to the point we want to move, allow movement
         if (Vector3.Distance(transform.position, currentPoint.transform.position) < 0.005f)
@@ -89,11 +102,14 @@ public class PieceController : MonoBehaviour
     {
         // set the current point as free to be occupied by any other piece
         currentPoint.occupied = false;
+        // set that the point to leave is free and is not occupied by any piece
+        currentPoint.occupiedBy = null;
         // update the current point that the piece is in with the point it's going to travel to
         currentPoint = nextPoint;
-        moving = true;
         // set the next point as occupied, currentPoint is now the new point to be occupied
         currentPoint.occupied = true;
+        // setting that the next point is occupied by this piece
+        currentPoint.occupiedBy = gameObject;
     }
 
     /// <summary>
