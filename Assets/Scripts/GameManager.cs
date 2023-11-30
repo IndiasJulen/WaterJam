@@ -54,17 +54,27 @@ public class GameManager : MonoBehaviour
 
     public void CheckIsPuzzleSolved()
     {
-        if (puzzlesPrefab.Length == 0 || !BoardManager.instance.CheckSolution()) return;
+        if (puzzlesPrefab.Length == aux.Count || !BoardManager.instance.CheckSolution()) return;
 
-        if(BoardManager.instance.puzzleType == PuzzleType.LEVEL1)
+        if (!solving) {
+            Debug.Log(aux.Count + " : " + puzzleToSpawn);
+            Debug.Log(solving);
+        }
+
+        //Debug.Log("ARRAY------------");
+        //for(int i = 0; i < aux.Count; i++) {
+        //    Debug.Log(aux[i]);
+        //}
+
+        if (puzzleToSpawn.gameObject.CompareTag("Level1")) 
         {
             StartCoroutine(WaitToSolve());
         }
-        if (BoardManager.instance.puzzleType == PuzzleType.LEVEL2)
+        if (puzzleToSpawn.gameObject.CompareTag("Level2")) 
         {
             StartCoroutine(WaitToSolve());
         }
-        if (BoardManager.instance.puzzleType == PuzzleType.LEVEL3)
+        if (puzzleToSpawn.gameObject.CompareTag("Level3")) 
         {
             StartCoroutine(WaitToSolve());
         }
@@ -72,8 +82,10 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator WaitToSolve()
     {
-        yield return new WaitForSeconds(1f);
-        clone.SetActive(false);
+        yield return new WaitForSeconds(3f);
+        Destroy(clone);
+        Debug.Log("A");
         solving = false;
+        Debug.Log("B");
     }
 }
