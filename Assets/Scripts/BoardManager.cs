@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
 
-using UnityEngine.UI;
+
+public enum PuzzleType
+{
+    LEVEL1,
+    LEVEL2,
+    LEVEL3
+}
 
 public class BoardManager : MonoBehaviour
 {
@@ -11,6 +16,10 @@ public class BoardManager : MonoBehaviour
     public SpriteRenderer solutionImage;
 
     public BoardPoint[] boardPoints;
+
+    public int leftToSolution;
+
+    public PuzzleType puzzleType = PuzzleType.LEVEL1;
 
     public static BoardManager instance;
 
@@ -21,7 +30,7 @@ public class BoardManager : MonoBehaviour
 
     private void Update()
     {
-        if (CheckSolution()) StartCoroutine(PuzzleCompleted());
+
     }
 
 
@@ -43,7 +52,7 @@ public class BoardManager : MonoBehaviour
     {
         int i = 0;
         bool solutionFound = true;
-        while((i < boardPoints.Length - 1) && solutionFound)
+        while((i < boardPoints.Length - leftToSolution) && solutionFound)
         {
             if (!CheckPointHasCorrectPiece(boardPoints[i])) {
                 solutionFound = false;
@@ -60,15 +69,5 @@ public class BoardManager : MonoBehaviour
     private bool CheckPointHasCorrectPiece(BoardPoint point)
     {
         return point.occupiedBy != null && point.occupiedBy.name.Split('-')[1].Equals(point.name.Split('-')[1]);
-    }
-
-    /// <summary>
-    /// Method for executing some tasks related to the completion of the puzzle after one second
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator PuzzleCompleted() 
-    {
-        yield return new WaitForSeconds(1f);
-        Debug.Log("Puzzle completed!!");    
-    }
+    }    
 }
