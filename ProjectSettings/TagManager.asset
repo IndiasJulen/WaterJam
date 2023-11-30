@@ -4,7 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Piece
+  - Level1
+  - Level2
+  - Level3
   layers:
   - Default
   - TransparentFX

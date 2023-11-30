@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 1984788821849171547}
   m_Layer: 0
   m_Name: (4x4) Pala Rastrillo
-  m_TagString: Untagged
+  m_TagString: Level3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

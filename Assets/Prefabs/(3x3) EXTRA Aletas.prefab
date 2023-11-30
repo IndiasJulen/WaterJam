@@ -2599,7 +2599,7 @@ GameObject:
   - component: {fileID: 2051863080261442810}
   m_Layer: 0
   m_Name: (3x3) EXTRA Aletas
-  m_TagString: Untagged
+  m_TagString: Level2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
