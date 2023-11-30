@@ -1407,6 +1407,9 @@ MonoBehaviour:
   - {fileID: 7339243073374803690, guid: 35dc2f5d23c048f45ba725a397c9a887, type: 3}
   - {fileID: 1781597293725093142, guid: 9fb125e9784841d4e8eb02baa41757ac, type: 3}
   - {fileID: 32344138198158163, guid: 374f1571723754943a93303d66b1946f, type: 3}
+  aux: []
+  puzzleToSpawn: {fileID: 0}
+  solving: 0
   score: 0
 --- !u!4 &2120961659
 Transform:

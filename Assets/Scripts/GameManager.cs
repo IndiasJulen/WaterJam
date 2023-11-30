@@ -1,11 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class GameManager : MonoBehaviour
 {
     public Transform point1, point2, point3;
     public GameObject[] puzzlesPrefab;
+    public List<GameObject> aux;
+
+    public GameObject puzzleToSpawn;
+
+    GameObject clone;
+
+    public bool solving = false;
 
     public int score = 0;
     
@@ -13,37 +22,58 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
-        GameObject puzzleToSpawn = puzzlesPrefab[Random.Range(0, puzzlesPrefab.Length)];
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        SpawnPuzzle();
+        CheckIsPuzzleSolved();
+    }
+
+    public void SpawnPuzzle()
+    {
+        if (puzzlesPrefab.Length == aux.Count || solving) return;
+
+        int index = Random.Range(0, puzzlesPrefab.Length);
+
+        puzzleToSpawn = puzzlesPrefab[index];
         Transform pointToSpawn;
 
         if (puzzleToSpawn.gameObject.CompareTag("Level1")) pointToSpawn = point1;
         else if (puzzleToSpawn.gameObject.CompareTag("Level2")) pointToSpawn = point2;
         else pointToSpawn = point3;
 
-        Instantiate(puzzleToSpawn, pointToSpawn.position, Quaternion.identity, pointToSpawn);
-    }
+        clone = (GameObject)Instantiate(puzzleToSpawn, pointToSpawn.position, Quaternion.identity, pointToSpawn);
 
-    // Update is called once per frame
-    void Update()
-    {
-        CheckIsPuzzleSolved();
+        solving = true;
+
+        aux.Add(puzzleToSpawn);
     }
 
     public void CheckIsPuzzleSolved()
     {
-        if (!BoardManager.instance.CheckSolution()) return;
+        if (puzzlesPrefab.Length == 0 || !BoardManager.instance.CheckSolution()) return;
 
         if(BoardManager.instance.puzzleType == PuzzleType.LEVEL1)
         {
-            //Debug.Log("Level 1 puzzle completed!");
+            StartCoroutine(WaitToSolve());
         }
         if (BoardManager.instance.puzzleType == PuzzleType.LEVEL2)
         {
-            //Debug.Log("Level 2 puzzle completed!");
+            StartCoroutine(WaitToSolve());
         }
         if (BoardManager.instance.puzzleType == PuzzleType.LEVEL3)
         {
-            //Debug.Log("Level 3 puzzle completed!");
+            StartCoroutine(WaitToSolve());
         }
+    }
+
+    private IEnumerator WaitToSolve()
+    {
+        yield return new WaitForSeconds(1f);
+        clone.SetActive(false);
+        solving = false;
     }
 }

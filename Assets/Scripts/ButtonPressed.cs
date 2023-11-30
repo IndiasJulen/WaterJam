@@ -57,9 +57,6 @@ public class ButtonPressed : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     private void ShowSolution()
     {
         imageIndex = itemIndex[BoardManager.instance.solutionImage.sprite.name.Split("-full")[0]];
-
-        Debug.Log("----------" + imageIndex);
-
         solutionImages[imageIndex].color = new Color(255f, 255f, 255f, 1f);
     }
 
