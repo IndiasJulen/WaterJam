@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
@@ -18,6 +19,8 @@ public class GameManager : MonoBehaviour
     public bool waiting = false;
 
     public int score = 0;
+
+    public int spawned = 0;
     
 
     // Start is called before the first frame update
@@ -39,11 +42,22 @@ public class GameManager : MonoBehaviour
 
         solving = true;
 
-        Debug.Log("Spawning puzzle");
-
-        int index = Random.Range(0, puzzlesPrefab.Length);
-
-        puzzleToSpawn = puzzlesPrefab[index];
+        bool exists = false;
+        bool same;
+        while (!exists) {
+            same = false;
+            int index = Random.Range(0, puzzlesPrefab.Length);
+            puzzleToSpawn = puzzlesPrefab[index];
+            if (aux.Count == 0) break;
+            for (int i = 0; i < aux.Count; i++) {
+                if (aux[i] == puzzleToSpawn) {
+                    same = true;
+                    break;
+                }
+            }
+            if(!same) exists = true;
+        }
+        
         Transform pointToSpawn;
 
         if (puzzleToSpawn.gameObject.CompareTag("Level1")) pointToSpawn = point1;
@@ -53,7 +67,7 @@ public class GameManager : MonoBehaviour
         clone = (GameObject)Instantiate(puzzleToSpawn, pointToSpawn.position, Quaternion.identity, pointToSpawn);
 
         aux.Add(puzzleToSpawn);
-        Debug.Log("Puzzle spawned");
+        spawned++;
     }
 
     public void CheckIsPuzzleSolved()
@@ -79,7 +93,6 @@ public class GameManager : MonoBehaviour
         waiting = true;
         yield return new WaitForSeconds(1f);
         Destroy(clone);
-        Debug.Log("Puzzle removed");
         solving = false;
         waiting = false;
     }

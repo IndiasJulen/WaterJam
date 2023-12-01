@@ -7,37 +7,31 @@ public class ButtonPressed : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 {
     public SpriteRenderer[] solutionImages;
 
-
     public Dictionary<string, int> itemIndex = new Dictionary<string, int>();
-    
 
     public int imageIndex;
     // Start is called before the first frame update
     void Start()
     {
-        itemIndex.Add("scuba-dive", 0);
-        itemIndex.Add("shovel-rake", 1);
-        itemIndex.Add("swimming-fins", 2);
-
-        //itemIndex.Add("straw-hat", 0);
-        //itemIndex.Add("slippers", 1);
-        //itemIndex.Add("sunglasses", 2);
-        //itemIndex.Add("lotion", 3);
-        //itemIndex.Add("purse", 4);
-        //itemIndex.Add("book", 5);
-        //itemIndex.Add("pool-float", 6);
-        //itemIndex.Add("scuba-dive", 7);
-        //itemIndex.Add("swimming-fins", 8);
-        //itemIndex.Add("towel", 9);
-        //itemIndex.Add("fridge", 10);
-        //itemIndex.Add("cube", 11);
-        //itemIndex.Add("beach-chair", 12);
-        //itemIndex.Add("table", 13);
-        //itemIndex.Add("paddle-ball", 14);
-        //itemIndex.Add("donut", 15);
-        //itemIndex.Add("radio", 16);
-        //itemIndex.Add("ball", 17);
-        //itemIndex.Add("shovel-rake", 18);
+        itemIndex.Add("straw-hat", 0);
+        itemIndex.Add("slippers", 1);
+        itemIndex.Add("sunglasses", 2);
+        itemIndex.Add("lotion", 3);
+        itemIndex.Add("purse", 4);
+        itemIndex.Add("book", 5);
+        itemIndex.Add("pool-float", 6);
+        itemIndex.Add("scuba-dive", 7);
+        itemIndex.Add("swimming-fins", 8);
+        itemIndex.Add("towel", 9);
+        itemIndex.Add("fridge", 10);
+        itemIndex.Add("cube", 11);
+        itemIndex.Add("beach-chair", 12);
+        itemIndex.Add("table", 13);
+        itemIndex.Add("paddle-ball", 14);
+        itemIndex.Add("donut", 15);
+        itemIndex.Add("radio", 16);
+        itemIndex.Add("ball", 17);
+        itemIndex.Add("shovel-rake", 18);
     }
 
     // Update is called once per frame
