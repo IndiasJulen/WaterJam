@@ -5,8 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour {
     public Transform point1, point2, point3;
     public GameObject[] puzzlesPrefab;
     public List<GameObject> aux;
@@ -21,23 +20,26 @@ public class GameManager : MonoBehaviour
     public int score = 0;
 
     public int spawned = 0;
-    
+
+    public static GameManager instance;
+
+    private void Awake() {
+        if (instance == null) instance = this;
+    }
+
 
     // Start is called before the first frame update
-    void Start()
-    {   
-        
+    void Start() {
+
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        SpawnPuzzle();
-        CheckIsPuzzleSolved();
+    void Update() {
+        //SpawnPuzzle();
+        //CheckIsPuzzleSolved();
     }
 
-    public void SpawnPuzzle()
-    {
+    public void SpawnPuzzle() {
         if (puzzlesPrefab.Length == aux.Count || solving) return;
 
         solving = true;
@@ -55,9 +57,9 @@ public class GameManager : MonoBehaviour
                     break;
                 }
             }
-            if(!same) exists = true;
+            if (!same) exists = true;
         }
-        
+
         Transform pointToSpawn;
 
         if (puzzleToSpawn.gameObject.CompareTag("Level1")) pointToSpawn = point1;
@@ -70,26 +72,21 @@ public class GameManager : MonoBehaviour
         spawned++;
     }
 
-    public void CheckIsPuzzleSolved()
-    {
+    public void CheckIsPuzzleSolved() {
         if (waiting || puzzlesPrefab.Length == aux.Count || !BoardManager.instance.CheckSolution()) return;
 
-        if (puzzleToSpawn.gameObject.CompareTag("Level1")) 
-        {
+        if (puzzleToSpawn.gameObject.CompareTag("Level1")) {
             StartCoroutine(WaitToSolve());
         }
-        if (puzzleToSpawn.gameObject.CompareTag("Level2")) 
-        {
+        if (puzzleToSpawn.gameObject.CompareTag("Level2")) {
             StartCoroutine(WaitToSolve());
         }
-        if (puzzleToSpawn.gameObject.CompareTag("Level3")) 
-        {
+        if (puzzleToSpawn.gameObject.CompareTag("Level3")) {
             StartCoroutine(WaitToSolve());
         }
     }
 
-    private IEnumerator WaitToSolve()
-    {
+    private IEnumerator WaitToSolve() {
         waiting = true;
         yield return new WaitForSeconds(1f);
         Destroy(clone);
