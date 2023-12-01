@@ -33,11 +33,10 @@ public class ButtonPressed : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         //itemIndex.Add("cube", 11);
         //itemIndex.Add("beach-chair", 12);
         //itemIndex.Add("table", 13);
-        //itemIndex.Add("beach-umbrella", 14);
-        //itemIndex.Add("paddle-ball", 15);
-        //itemIndex.Add("donut", 16);
-        //itemIndex.Add("radio", 17);
-        //itemIndex.Add("ball", 18);
+        //itemIndex.Add("paddle-ball", 14);
+        //itemIndex.Add("donut", 15);
+        //itemIndex.Add("radio", 16);
+        //itemIndex.Add("ball", 17);
         //itemIndex.Add("shovel-rake", 18);
     }
 

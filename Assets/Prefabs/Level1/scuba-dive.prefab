@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 5407024309124758550}
   - component: {fileID: 8155783707273111964}
   m_Layer: 0
-  m_Name: (3x3) Gafas Buceo
+  m_Name: scuba-dive
   m_TagString: Level1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
