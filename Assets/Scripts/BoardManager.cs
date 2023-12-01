@@ -2,14 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public enum PuzzleType
-{
-    LEVEL1,
-    LEVEL2,
-    LEVEL3
-}
-
 public class BoardManager : MonoBehaviour
 {
     public GameObject movablePiece;
@@ -18,8 +10,6 @@ public class BoardManager : MonoBehaviour
     public BoardPoint[] boardPoints;
 
     public int leftToSolution;
-
-    public PuzzleType puzzleType = PuzzleType.LEVEL1;
 
     public static BoardManager instance;
 

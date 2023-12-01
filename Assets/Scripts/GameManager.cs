@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     GameObject clone;
 
     public bool solving = false;
+    public bool waiting = false;
 
     public int score = 0;
     
@@ -36,6 +37,10 @@ public class GameManager : MonoBehaviour
     {
         if (puzzlesPrefab.Length == aux.Count || solving) return;
 
+        solving = true;
+
+        Debug.Log("Spawning puzzle");
+
         int index = Random.Range(0, puzzlesPrefab.Length);
 
         puzzleToSpawn = puzzlesPrefab[index];
@@ -47,24 +52,13 @@ public class GameManager : MonoBehaviour
 
         clone = (GameObject)Instantiate(puzzleToSpawn, pointToSpawn.position, Quaternion.identity, pointToSpawn);
 
-        solving = true;
-
         aux.Add(puzzleToSpawn);
+        Debug.Log("Puzzle spawned");
     }
 
     public void CheckIsPuzzleSolved()
     {
-        if (puzzlesPrefab.Length == aux.Count || !BoardManager.instance.CheckSolution()) return;
-
-        if (!solving) {
-            Debug.Log(aux.Count + " : " + puzzleToSpawn);
-            Debug.Log(solving);
-        }
-
-        //Debug.Log("ARRAY------------");
-        //for(int i = 0; i < aux.Count; i++) {
-        //    Debug.Log(aux[i]);
-        //}
+        if (waiting || puzzlesPrefab.Length == aux.Count || !BoardManager.instance.CheckSolution()) return;
 
         if (puzzleToSpawn.gameObject.CompareTag("Level1")) 
         {
@@ -82,10 +76,11 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator WaitToSolve()
     {
-        yield return new WaitForSeconds(3f);
+        waiting = true;
+        yield return new WaitForSeconds(1f);
         Destroy(clone);
-        Debug.Log("A");
+        Debug.Log("Puzzle removed");
         solving = false;
-        Debug.Log("B");
+        waiting = false;
     }
 }
