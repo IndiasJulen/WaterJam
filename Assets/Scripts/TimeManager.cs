@@ -22,7 +22,8 @@ public class TimeManager : MonoBehaviour
             countdown -= Time.deltaTime;
             float min = Mathf.FloorToInt(countdown / 60);
             float sec = Mathf.FloorToInt(countdown % 60);
-            timeText.text = min + ":" + sec;
+            if(sec<10) timeText.text = min + ":0" + sec;
+            else timeText.text = min + ":" + sec;
         }
     }
 }

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -48,7 +50,7 @@ public class GameManager : MonoBehaviour {
         bool same;
         while (!exists) {
             same = false;
-            int index = Random.Range(0, puzzlesPrefab.Length);
+            int index = UnityEngine.Random.Range(0, puzzlesPrefab.Length);
             puzzleToSpawn = puzzlesPrefab[index];
             if (aux.Count == 0) break;
             for (int i = 0; i < aux.Count; i++) {
@@ -67,8 +69,6 @@ public class GameManager : MonoBehaviour {
         else pointToSpawn = point3;
 
         clone = (GameObject)Instantiate(puzzleToSpawn, pointToSpawn.position, Quaternion.identity, pointToSpawn);
-
-        //Instantiate(puzzleToSpawn, pointToSpawn.position, Quaternion.identity, pointToSpawn);
 
         aux.Add(puzzleToSpawn);
         spawned++;

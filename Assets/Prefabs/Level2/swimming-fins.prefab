@@ -49,7 +49,7 @@ MonoBehaviour:
   left: {fileID: 4042462173953375681}
   right: {fileID: 0}
   occupied: 1
-  occupiedBy: {fileID: 8555261382324250004}
+  occupiedBy: {fileID: 1306322018482394731}
 --- !u!1 &74588041445452746
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,8 +98,8 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 2994192397955905749}
-  occupied: 0
-  occupiedBy: {fileID: 0}
+  occupied: 1
+  occupiedBy: {fileID: 8028373512697813368}
 --- !u!1 &233742042681703350
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,7 +127,7 @@ Transform:
   m_GameObject: {fileID: 233742042681703350}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.05, y: 0, z: 0}
+  m_LocalPosition: {x: 0.1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 938b85e8d4fed654280aab861cb66944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPoint: {fileID: 7122227864116973633}
+  currentPoint: {fileID: 2424776208053196832}
   moveSpeed: 3
   moving: 0
   spriteRenderer: {fileID: 0}
@@ -325,8 +325,8 @@ MonoBehaviour:
   down: {fileID: 3721713838043176562}
   left: {fileID: 7651645995203328137}
   right: {fileID: 8730134464773854590}
-  occupied: 1
-  occupiedBy: {fileID: 1685679273407864650}
+  occupied: 0
+  occupiedBy: {fileID: 0}
 --- !u!1 &1280466357324443435
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,7 +438,7 @@ Transform:
   m_GameObject: {fileID: 1306322018482394731}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.05, y: -0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -457,7 +457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 938b85e8d4fed654280aab861cb66944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPoint: {fileID: 3721713838043176562}
+  currentPoint: {fileID: 3548705969076227113}
   moveSpeed: 3
   moving: 0
   spriteRenderer: {fileID: 0}
@@ -667,7 +667,7 @@ Transform:
   m_GameObject: {fileID: 1685679273407864650}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.05, z: 0}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -686,7 +686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 938b85e8d4fed654280aab861cb66944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPoint: {fileID: 4608892858266786735}
+  currentPoint: {fileID: 7973191688889822923}
   moveSpeed: 3
   moving: 0
   spriteRenderer: {fileID: 0}
@@ -1284,7 +1284,7 @@ Transform:
   m_GameObject: {fileID: 3493844210047740175}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.05, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1303,7 +1303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 938b85e8d4fed654280aab861cb66944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPoint: {fileID: 4042462173953375681}
+  currentPoint: {fileID: 5251355673274987152}
   moveSpeed: 3
   moving: 0
   spriteRenderer: {fileID: 0}
@@ -1400,8 +1400,8 @@ MonoBehaviour:
   down: {fileID: 3548705969076227113}
   left: {fileID: 3721713838043176562}
   right: {fileID: 2424776208053196832}
-  occupied: 1
-  occupiedBy: {fileID: 233742042681703350}
+  occupied: 0
+  occupiedBy: {fileID: 0}
 --- !u!1 &3595130745126281824
 GameObject:
   m_ObjectHideFlags: 0
@@ -1451,7 +1451,7 @@ MonoBehaviour:
   left: {fileID: 2994192397955905749}
   right: {fileID: 7122227864116973633}
   occupied: 1
-  occupiedBy: {fileID: 1306322018482394731}
+  occupiedBy: {fileID: 8555261382324250004}
 --- !u!1 &4326318983457068158
 GameObject:
   m_ObjectHideFlags: 0
@@ -1775,8 +1775,8 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 0}
-  occupied: 0
-  occupiedBy: {fileID: 0}
+  occupied: 1
+  occupiedBy: {fileID: 3493844210047740175}
 --- !u!1 &4867379287238241621
 GameObject:
   m_ObjectHideFlags: 0
@@ -1909,8 +1909,8 @@ MonoBehaviour:
   down: {fileID: 5251355673274987152}
   left: {fileID: 6126194604288465045}
   right: {fileID: 3548705969076227113}
-  occupied: 1
-  occupiedBy: {fileID: 3493844210047740175}
+  occupied: 0
+  occupiedBy: {fileID: 0}
 --- !u!1 &5772291196127991260
 GameObject:
   m_ObjectHideFlags: 0
@@ -2127,8 +2127,8 @@ MonoBehaviour:
   down: {fileID: 6126194604288465045}
   left: {fileID: 231823604164818561}
   right: {fileID: 3721713838043176562}
-  occupied: 1
-  occupiedBy: {fileID: 8028373512697813368}
+  occupied: 0
+  occupiedBy: {fileID: 0}
 --- !u!1 &6326844416428808172
 GameObject:
   m_ObjectHideFlags: 0
@@ -2503,8 +2503,8 @@ MonoBehaviour:
   down: {fileID: 4608892858266786735}
   left: {fileID: 0}
   right: {fileID: 0}
-  occupied: 0
-  occupiedBy: {fileID: 0}
+  occupied: 1
+  occupiedBy: {fileID: 1685679273407864650}
 --- !u!1 &7290625640099623459
 GameObject:
   m_ObjectHideFlags: 0
@@ -2553,8 +2553,8 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 7122227864116973633}
   right: {fileID: 0}
-  occupied: 0
-  occupiedBy: {fileID: 0}
+  occupied: 1
+  occupiedBy: {fileID: 233742042681703350}
 --- !u!1 &7292950371561449811
 GameObject:
   m_ObjectHideFlags: 0
@@ -2660,7 +2660,6 @@ MonoBehaviour:
   - {fileID: 5251355673274987152}
   - {fileID: 231823604164818561}
   leftToSolution: 4
-  puzzleType: 1
 --- !u!1 &7423621632966106761
 GameObject:
   m_ObjectHideFlags: 0
@@ -3024,7 +3023,7 @@ Transform:
   m_GameObject: {fileID: 8028373512697813368}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.05, y: 0, z: 0}
+  m_LocalPosition: {x: -0.1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3043,7 +3042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 938b85e8d4fed654280aab861cb66944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPoint: {fileID: 2994192397955905749}
+  currentPoint: {fileID: 231823604164818561}
   moveSpeed: 3
   moving: 0
   spriteRenderer: {fileID: 0}
@@ -3203,7 +3202,7 @@ Transform:
   m_GameObject: {fileID: 8555261382324250004}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.05, y: -0.05, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3222,7 +3221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 938b85e8d4fed654280aab861cb66944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPoint: {fileID: 3548705969076227113}
+  currentPoint: {fileID: 3721713838043176562}
   moveSpeed: 3
   moving: 0
   spriteRenderer: {fileID: 0}
