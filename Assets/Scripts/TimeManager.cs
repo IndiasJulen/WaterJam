@@ -9,10 +9,6 @@ public class TimeManager : MonoBehaviour
     public float countdown = 300;
     public TMP_Text timeText;
 
-    public bool lastChange = false;
-
-    public bool canChangeBar = true;
-
     // Start is called before the first frame update
     void Start()
     {

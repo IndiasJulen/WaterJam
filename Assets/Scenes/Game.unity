@@ -2482,10 +2482,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5246e86255ea8b4c8960550aca110df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdown: 60
+  countdown: 300
   timeText: {fileID: 1891944590}
-  lastChange: 0
-  canChangeBar: 1
 --- !u!1 &1446108049
 GameObject:
   m_ObjectHideFlags: 0
@@ -3848,7 +3846,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SHOW SOLUTION
+  m_text: VER SOLUCION
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2304b7e2b00715b48ad155e43d4a4730, type: 2}
   m_sharedMaterial: {fileID: -1964479715923049069, guid: 2304b7e2b00715b48ad155e43d4a4730, type: 2}

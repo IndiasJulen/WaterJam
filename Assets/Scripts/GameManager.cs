@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        //SpawnPuzzle();
+        SpawnPuzzle();
         //CheckIsPuzzleSolved();
     }
 
@@ -67,6 +67,8 @@ public class GameManager : MonoBehaviour {
         else pointToSpawn = point3;
 
         clone = (GameObject)Instantiate(puzzleToSpawn, pointToSpawn.position, Quaternion.identity, pointToSpawn);
+
+        //Instantiate(puzzleToSpawn, pointToSpawn.position, Quaternion.identity, pointToSpawn);
 
         aux.Add(puzzleToSpawn);
         spawned++;
