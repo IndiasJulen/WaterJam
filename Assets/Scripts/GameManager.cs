@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -23,6 +24,9 @@ public class GameManager : MonoBehaviour {
 
     public int spawned = 0;
 
+    public TMP_Text scoreText;
+    public TMP_Text completedText;
+
     public static GameManager instance;
 
     private void Awake() {
@@ -32,13 +36,13 @@ public class GameManager : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-
+        scoreText.text = score.ToString();
     }
 
     // Update is called once per frame
     void Update() {
         SpawnPuzzle();
-        //CheckIsPuzzleSolved();
+        CheckIsPuzzleSolved();
     }
 
     public void SpawnPuzzle() {
@@ -75,24 +79,34 @@ public class GameManager : MonoBehaviour {
     }
 
     public void CheckIsPuzzleSolved() {
-        if (waiting || puzzlesPrefab.Length == aux.Count || !BoardManager.instance.CheckSolution()) return;
+        if (waiting || puzzleToSpawn == null || !BoardManager.instance.CheckSolution()) return;
+
+        Debug.Log(waiting);
 
         if (puzzleToSpawn.gameObject.CompareTag("Level1")) {
-            StartCoroutine(WaitToSolve());
+            score += 20;
+            StartCoroutine(WaitToSolve(score));
         }
         if (puzzleToSpawn.gameObject.CompareTag("Level2")) {
-            StartCoroutine(WaitToSolve());
+            score += 50;
+            StartCoroutine(WaitToSolve(score));
         }
         if (puzzleToSpawn.gameObject.CompareTag("Level3")) {
-            StartCoroutine(WaitToSolve());
+            score += 100;
+            StartCoroutine(WaitToSolve(score));
         }
     }
 
-    private IEnumerator WaitToSolve() {
+    private IEnumerator WaitToSolve(int score) {
+        completedText.color = new Color(completedText.color.r, completedText.color.g, completedText.color.b, 1f);
         waiting = true;
-        yield return new WaitForSeconds(1f);
+        scoreText.text = score.ToString();
+        yield return new WaitForSeconds(0.7f);
         Destroy(clone);
+        completedText.color = new Color(completedText.color.r, completedText.color.g, completedText.color.b, 0f);
+        yield return new WaitForSeconds(0.5f);
         solving = false;
         waiting = false;
+        puzzleToSpawn = null;
     }
 }
