@@ -2,10 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.Mathematics;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEditor.PlayerSettings;
 
 public class GameManager : MonoBehaviour {
@@ -27,6 +25,8 @@ public class GameManager : MonoBehaviour {
     public TMP_Text scoreText;
     public TMP_Text completedText;
 
+    public string mainMenuScene;
+
     public static GameManager instance;
 
     private void Awake() {
@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        Time.timeScale = 1;
         scoreText.text = score.ToString();
     }
 
@@ -43,6 +44,11 @@ public class GameManager : MonoBehaviour {
     void Update() {
         SpawnPuzzle();
         CheckIsPuzzleSolved();
+    }
+
+    public void CheckChangeScene() {
+        Time.timeScale = 0;
+        SceneManager.LoadScene(mainMenuScene);
     }
 
     public void SpawnPuzzle() {
@@ -79,7 +85,8 @@ public class GameManager : MonoBehaviour {
     }
 
     public void CheckIsPuzzleSolved() {
-        if (waiting || puzzleToSpawn == null || !BoardManager.instance.CheckSolution()) return;
+        //if (waiting || puzzleToSpawn == null || !BoardManager.instance.CheckSolution()) return;
+        if (waiting || puzzleToSpawn == null) return;
 
         Debug.Log(waiting);
 
